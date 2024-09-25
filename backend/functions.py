@@ -8,7 +8,7 @@ from services.transactions import TransactionService
 from services.notify import send_discord_notification
 from services.emails import EmailService
 from flask import current_app
-from datetime import datetime
+from datetime import datetime, timedelta
 import uuid
 import base64
 import json
@@ -233,7 +233,7 @@ def get_statistics():
 def get_transactions(date_from, date_to):
     transactions = db.session.query(Transaction).filter(Transaction.date >= date_from, Transaction.date <= date_to).all()
     if not transactions or transactions[0].created_at.date() != datetime.today().date():
-        date_from_str = transactions[0].date.strftime('%Y-%m-%d')
+        date_from_str = transactions[0].date.strftime('%Y-%m-%d') if transactions else (datetime.today() - timedelta(days=30)).strftime('%Y-%m-%d')
         date_to_str = datetime.today().strftime('%Y-%m-%d')
         try:
             transactions = transaction_service.get_all(date_from=date_from_str, date_to=date_to_str)

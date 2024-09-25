@@ -1,20 +1,18 @@
-# Use the official Node.js image from the Docker Hub
 FROM node:16-alpine
 
-# Set the working directory in the container
 WORKDIR /app
 
-# Copy package.json and package-lock.json
+# Copy package.json and lock file
 COPY package*.json ./
 
-# Install the Node.js dependencies
+# Install dependencies
 RUN npm install
 
-# Copy the rest of the code into the container
+# Copy the rest of the code
 COPY . .
 
-# Expose the port the app runs on (Vite dev server default is 5173)
+# Expose the port
 EXPOSE 5173
 
-# Start the Vite development server
-CMD ["npm", "run", "dev", "--", "--host"]
+# Start the application
+CMD ["sh", "-c", "npm install && npm run dev -- --host"]
