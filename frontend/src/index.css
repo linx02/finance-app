@@ -1,0 +1,21 @@
+/* globals.css */
+
+:root {
+    --background: 0 0% 100%;           /* White */
+    --foreground: 222.2 47.4% 11.2%;   /* Almost black */
+  
+    --muted: 210 40% 96.1%;            /* Light gray */
+    --muted-foreground: 215.4 16.3% 46.9%;
+  
+    --accent: 210 100% 50%;            /* Blue */
+    --accent-foreground: 210 100% 98%;
+  
+    --ring: 215 20.2% 65.1%;           /* Blueish */
+  
+    /* Define other variables as needed */
+  }
+  
+  /* Include Tailwind's base styles */
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
